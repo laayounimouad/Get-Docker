@@ -18,7 +18,7 @@ EXPOSE 80
 
 - params
     
-    -t 
+    `-t` 
     
     `-q` : for quiet, it suppress the build output
     
@@ -52,7 +52,7 @@ services:
 
 </aside>
 
-`***docker-compose up`:***
+`docker-compose up`:
 
 > In the directory containing the file use the Command ⇒ `docker-compose up`. You can add `-d` to run process in background.
 > 
@@ -73,27 +73,27 @@ sudo aa-remove-unknown
 sudo apparmor_parser -r /var/lib/snapd/apparmor/profiles/*
 ```
 
-`***docker-compose down`:***
+`docker-compose down`:
 
 > Shutdown all the services
 > 
 
-`d***ocker-compose events`:***
+`docker-compose events`:
 
 > Receive real time events from containers in case for example stopping a container, deleting an image ….
 > 
 
-`d***ocker-compose logs` :***
+`docker-compose logs` :
 
 > Receive real time events from containers in case for example stopping a container, deleting an image ….
 > 
 
-`***sudo docker-compose run`:***
+`sudo docker-compose run`:
 
 > Run a one time command against a service
 Examples: 
-- `docker-compose run *service env` 
--* `docker-compose run *service bash`*
+- `docker-compose run service env` 
+- `docker-compose run service bash`
 > 
 
 # Creating a SWARM cluster docker
