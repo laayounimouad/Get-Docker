@@ -14,7 +14,7 @@ EXPOSE 80
 
 small Nginx example
 
-![Untitled](Docker%206ec35e7e682f402180d33d5c480e9457/Untitled.png)
+![Untitled](Docker/NginxExamlpe.png)
 
 2→next in the application directory run the command:   `sudo docker build -t webapp .`
 
@@ -69,7 +69,7 @@ services:
 
 Error :
 
-![Untitled](Docker%206ec35e7e682f402180d33d5c480e9457/Untitled%201.png)
+![Untitled](Docker/Error1.png)
 
 ```bash
 Stopping application_adminer_1 ... error
