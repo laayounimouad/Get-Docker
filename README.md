@@ -12,7 +12,9 @@ COPY index.html /usr/share/nginx/html
 EXPOSE 80
 ```
 
-![Untitled](Docker/Untitled.png)
+small Nginx example
+
+![Untitled](Docker%206ec35e7e682f402180d33d5c480e9457/Untitled.png)
 
 2→next in the application directory run the command:   `sudo docker build -t webapp .`
 
@@ -22,6 +24,14 @@ EXPOSE 80
     
     `-q` : for quiet, it suppress the build output
     
+
+3→ to see images use `docker images` 
+
+4→ to run the image in a container use `docker run -d -p 8081:80 webapp` 
+
+- params:
+    - `-d` run process in background
+    - `-p` set port
 
 # Docker Compose
 
@@ -52,14 +62,14 @@ services:
 
 </aside>
 
-`docker-compose up`:
+`docker-compose up`***:***
 
 > In the directory containing the file use the Command ⇒ `docker-compose up`. You can add `-d` to run process in background.
 > 
 
 Error :
 
-![Untitled](Docker/Untitled%201.png)
+![Untitled](Docker%206ec35e7e682f402180d33d5c480e9457/Untitled%201.png)
 
 ```bash
 Stopping application_adminer_1 ... error
@@ -92,8 +102,8 @@ sudo apparmor_parser -r /var/lib/snapd/apparmor/profiles/*
 
 > Run a one time command against a service
 Examples: 
-- `docker-compose run service env` 
-- `docker-compose run service bash`
+- `docker-compose run *service env` 
+-* `docker-compose run *service bash`*
 > 
 
 # Creating a SWARM cluster docker
@@ -113,3 +123,27 @@ The swarm **manager** control the cluster. While the other machines are called n
     - `docker swarm join --token [token here] [@IP of manager machine]:[port]`
 - Showing available nodes
     - `docker node ls`
+- creating a service in the cluster
+    - `docker service create --name swarm1 webapp` :
+        - this is cluster management command and should be executed on a swarm manager node
+        - you can add secrets, configs, env variables and many more
+    - display running services :
+        - `docker service ls`
+    - display details of a running service :
+        - `docker service ps swarm1`
+        - `docker inspect swarm1`
+    - display logs :
+        - `docker service logs swarm1`
+    - add published service **ports**
+        - `docker service update --publish-add published=8080,target=80 swarm1`
+    - add replicas
+        - `docker service update --replicas 5 swarm1`
+        - `docker service scale zbq9=5` (zbq9 is the service ID)
+    - rollback from unwanted changes
+        - `docker service update --rollback --update-delay 0s swarm1`
+    - update service with new image
+        - `docker service update --image webapp:v2 swarm1`
+    - Service Deletion
+        - `docker service rm swarm1`
+    - add constraint
+        - `Docker service create --name swarm1 --constraint 'node.role==worker' --limit-memory=1GB webapp`
